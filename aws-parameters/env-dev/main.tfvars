@@ -26,5 +26,7 @@ secrets = [
   { name = "dev.rabbitmq.amqp_user", type = "SecureString", value = "roboshop" },
   { name = "dev.rabbitmq.amqp_pass", type = "SecureString", value = "roboshop123" },
   { name = "dev.payment.amqp_user", type = "SecureString", value = "roboshop" },
-  { name = "dev.payment.amqp_pass", type = "SecureString", value = "roboshop123" }
+  { name = "dev.payment.amqp_pass", type = "SecureString", value = "roboshop123" },
+  { name = "dev.docdb.user", type = "SecureString", value = "admin1" },
+  { name = "dev.docdb.pass", type = "SecureString", value = "RoboShop1" }
 ]
