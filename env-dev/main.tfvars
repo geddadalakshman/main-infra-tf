@@ -65,3 +65,14 @@ docdb = {
   }
 }
 
+
+rds = {
+  main = {
+    engine = "rds"
+    engine_version = "5.7.mysql_aurora.2.11.2"
+    backup_retention_period = 2
+    preferred_backup_window = "07:00-09:00"
+    no_of_instances = 1
+    instance_class = "db.t3.small"
+  }
+}
