@@ -77,3 +77,15 @@ rds = {
     instance_class = "db.t3.small"
   }
 }
+
+
+
+redis = {
+  main = {
+    engine = "redis"
+    engine_version = "6.x"
+    num_cache_nodes = 1
+    node_type = "cache.t3.micro"
+  }
+}
+
