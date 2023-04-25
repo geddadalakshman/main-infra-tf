@@ -57,7 +57,15 @@ module "elasticache" {
   node_type = each.value["node_type"]
 }
 
+module "rabbitmq" {
+  source = "git::https://github.com/geddadalakshman/rabbitmq-module.git"
+  env = var.env
+  tags = var.tags
+  subnet_ids = local.db_subnet_ids
 
+  for_each = var.rabbitmq
+  instance_type = each.value["instance_type"]
+}
 
 #output "vpc" {
 #  value = module.vpc
