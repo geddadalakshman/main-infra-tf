@@ -100,6 +100,7 @@ alb = {
     name = "web"
     internal = false
     load_balancer_type = "application"
+    subnet_name = "web"
   }
 
   private = {
@@ -107,6 +108,7 @@ alb = {
     internal = true
     load_balancer_type = "application"
     enable_deletion_protection = true
+    subnet_name = "app"
   }
 }
 
