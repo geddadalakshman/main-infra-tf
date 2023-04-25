@@ -95,4 +95,18 @@ rabbitmq = {
   }
 }
 
+alb = {
+  public = {
+    name = "web"
+    internal = false
+    load_balancer_type = "application"
+  }
+
+  private = {
+    name = "app"
+    internal = true
+    load_balancer_type = "application"
+    enable_deletion_protection = true
+  }
+}
 
