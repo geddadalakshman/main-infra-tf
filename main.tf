@@ -79,6 +79,6 @@ module "alb" {
   subnets = lookup(local.subnet_ids, each.value["subnet_name"], null )
 }
 
-#output "vpc" {
-#  value = module.vpc
-#}
+output "alb" {
+  value = module.vpc
+}
