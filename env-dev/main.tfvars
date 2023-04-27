@@ -97,10 +97,11 @@ rabbitmq = {
 
 alb = {
   public = {
-    name = "web"
+    name = "public"
     internal = false
     load_balancer_type = "application"
-    subnet_name = "web"
+    enable_deletion_protection = true
+    subnet_name = "public"
   }
 
   private = {
@@ -121,6 +122,46 @@ apps = {
     max_size           = 4
     min_size           = 1
     subnet_name = "app"
+  }
+  cart = {
+    component = "cart"
+    instance_type = "t3.nano"
+    desired_capacity   = 1
+    max_size           = 4
+    min_size           = 1
+    subnet_name = "app"
+  }
+  user = {
+    component = "user"
+    instance_type = "t3.nano"
+    desired_capacity   = 1
+    max_size           = 4
+    min_size           = 1
+    subnet_name = "app"
+  }
+  shipping = {
+    component = "shipping"
+    instance_type = "t3.micro"
+    desired_capacity   = 1
+    max_size           = 4
+    min_size           = 1
+    subnet_name = "app"
+  }
+  payment = {
+    component = "payment"
+    instance_type = "t3.micro"
+    desired_capacity   = 1
+    max_size           = 4
+    min_size           = 1
+    subnet_name = "app"
+  }
+  frontend = {
+    component = "frontend"
+    instance_type = "t3.nano"
+    desired_capacity   = 1
+    max_size           = 4
+    min_size           = 1
+    subnet_name = "web"
   }
 }
 
