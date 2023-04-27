@@ -100,7 +100,6 @@ alb = {
     name = "public"
     internal = false
     load_balancer_type = "application"
-    enable_deletion_protection = true
     subnet_name = "public"
   }
 
@@ -108,7 +107,6 @@ alb = {
     name = "app"
     internal = true
     load_balancer_type = "application"
-    enable_deletion_protection = true
     subnet_name = "app"
   }
 }
