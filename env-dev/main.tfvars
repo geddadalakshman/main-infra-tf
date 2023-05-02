@@ -1,5 +1,6 @@
 env = "dev"
 bastion_cidr = ["172.31.14.99/32"]
+dns_domain = "devops71.tech"
 
 vpc = {
   main = {
@@ -127,6 +128,8 @@ apps = {
     subnet_name = "app"
     port = 8080
     allow_port_to = "app"
+    alb = "private"
+    listener_priority = 10
   }
   cart = {
     component = "cart"
@@ -137,6 +140,8 @@ apps = {
     subnet_name = "app"
     port = 8080
     allow_port_to = "app"
+    alb = "private"
+    listener_priority = 11
   }
   user = {
     component = "user"
@@ -147,6 +152,8 @@ apps = {
     subnet_name = "app"
     port = 8080
     allow_port_to = "app"
+    alb = "private"
+    listener_priority = 12
   }
   shipping = {
     component = "shipping"
@@ -157,6 +164,8 @@ apps = {
     subnet_name = "app"
     port = 8080
     allow_port_to = "app"
+    alb = "private"
+    listener_priority = 13
   }
   payment = {
     component = "payment"
@@ -167,6 +176,8 @@ apps = {
     subnet_name = "app"
     port = 8080
     allow_port_to = "app"
+    alb = "private"
+    listener_priority = 14
   }
   frontend = {
     component = "frontend"
@@ -177,6 +188,8 @@ apps = {
     subnet_name = "web"
     port = 80
     allow_port_to = "public"
+    alb = "public"
+    listener_priority = 10
   }
 }
 
