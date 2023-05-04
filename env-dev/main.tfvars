@@ -78,7 +78,7 @@ rds = {
     no_of_instances         = 1
     instance_class          = "db.t3.small"
     allow_subnets           = "app"
-    #skip_final_snapshot_snapshot = true
+    skip_final_snapshot_snapshot = true
   }
 }
 
