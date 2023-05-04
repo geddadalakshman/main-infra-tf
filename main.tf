@@ -51,7 +51,7 @@ module "rds" {
 
 
 module "elasticache" {
-  source = "git::https://github.com/devops71/elasticache-module.git"
+  source = "git::https://github.com/geddadalakshman/elasticache-module.git"
   env    = var.env
   tags   = var.tags
 
@@ -67,7 +67,7 @@ module "elasticache" {
 }
 
 module "rabbitmq" {
-  source       = "git::https://github.com/devops71/rabbitmq-module.git"
+  source = "git::https://github.com/geddadalakshman/rabbitmq-module.git"
   env          = var.env
   tags         = var.tags
   bastion_cidr = var.bastion_cidr
@@ -83,7 +83,7 @@ module "rabbitmq" {
 }
 
 module "alb" {
-  source = "git::https://github.com/devops71/alb-module.git"
+  source = "git::https://github.com/geddadalakshman/alb-module.git"
   env    = var.env
   tags   = var.tags
 
