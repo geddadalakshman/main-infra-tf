@@ -71,30 +71,32 @@ docdb = {
 
 rds = {
   main = {
-    engine = "aurora-mysql"
-    engine_version = "5.7.mysql_aurora.2.11.2"
-    backup_retention_period = 2
+    engine                  = "aurora-mysql"
+    engine_version          = "5.7.mysql_aurora.2.11.1"
+    backup_retention_period = 1
     preferred_backup_window = "07:00-09:00"
-    skip_final_snapshot = true
-    no_of_instances = 1
-    instance_class = "db.t3.small"
+    no_of_instances         = 1
+    instance_class          = "db.t3.small"
+    allow_subnets           = "app"
   }
 }
 
 
 
-redis = {
+elasticache = {
   main = {
-    engine = "redis"
-    engine_version = "6.x"
+    engine          = "redis"
+    engine_version  = "6.x"
     num_cache_nodes = 1
-    node_type = "cache.t3.micro"
+    node_type       = "cache.t3.micro"
+    allow_subnets   = "app"
   }
 }
 
 rabbitmq = {
   main = {
     instance_type = "t3.micro"
+    allow_subnets = "app"
   }
 }
 
@@ -109,7 +111,7 @@ alb = {
   }
 
   private = {
-    name = "app"
+    name = "private"
     internal = true
     load_balancer_type = "application"
 #    enable_deletion_protection = false
