@@ -35,6 +35,7 @@ module "rds" {
   env = var.env
   tags = var.tags
   subnet_ids = local.db_subnet_ids
+  vpc_id     = module.vpc["main"].vpc_id
 
   for_each = var.rds
   engine = each.value["engine"]
@@ -44,44 +45,56 @@ module "rds" {
   skip_final_snapshot = each.value["skip_final_snapshot"]
   no_of_instances = each.value["no_of_instances"]
   instance_class = each.value["instance_class"]
+  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
 }
+
 
 
 module "elasticache" {
-  source = "git::https://github.com/geddadalakshman/redis-module.git"
-  env = var.env
-  tags = var.tags
-  subnet_ids = local.db_subnet_ids
+  source = "git::https://github.com/devops71/tf-module-elasticache.git"
+  env    = var.env
+  tags   = var.tags
 
-  for_each = var.elasticache
-  engine = each.value["engine"]
-  engine_version = each.value["engine_version"]
+  subnet_ids = local.db_subnet_ids
+  vpc_id     = module.vpc["main"].vpc_id
+
+  for_each        = var.elasticache
+  engine          = each.value["engine"]
+  engine_version  = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
-  node_type = each.value["node_type"]
+  node_type       = each.value["node_type"]
+  allow_subnets   = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
 }
 
 module "rabbitmq" {
-  source = "git::https://github.com/geddadalakshman/rabbitmq-module.git"
-  env = var.env
-  tags = var.tags
-  subnet_ids = local.db_subnet_ids
+  source       = "git::https://github.com/devops71/tf-module-rabbitmq.git"
+  env          = var.env
+  tags         = var.tags
+  bastion_cidr = var.bastion_cidr
+  dns_domain   = var.dns_domain
 
-  for_each = var.rabbitmq
+  subnet_ids = local.db_subnet_ids
+  vpc_id     = module.vpc["main"].vpc_id
+
+  for_each      = var.rabbitmq
   instance_type = each.value["instance_type"]
+  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+
 }
 
 module "alb" {
-  source = "git::https://github.com/geddadalakshman/alb-module.git"
-  env = var.env
-  tags = var.tags
+  source = "git::https://github.com/devops71/tf-module-alb.git"
+  env    = var.env
+  tags   = var.tags
+
   vpc_id = module.vpc["main"].vpc_id
 
-  for_each = var.alb
-  name = each.value["name"]
-  internal = each.value["internal"]
+  for_each           = var.alb
+  name               = each.value["name"]
+  internal           = each.value["internal"]
   load_balancer_type = each.value["load_balancer_type"]
-  subnets = lookup(local.subnet_ids, each.value["subnet_name"], null )
-  allow_cidr = each.value["allow_cidr"]
+  subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)
+  allow_cidr         = each.value["allow_cidr"]
 }
 
 module "apps" {
@@ -109,8 +122,7 @@ module "apps" {
 }
 
 
-#output "redis" {
-#  value = module.elasticache
-#}
-
+output "alb" {
+  value = module.elasticache
+}
 
