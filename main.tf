@@ -98,6 +98,7 @@ module "alb" {
 }
 
 module "apps" {
+  depends_on = [module.docdb, module.elasticache, module.rabbitmq, module.rds, module.alb]
   source = "git::https://github.com/geddadalakshman/apps-module.git"
   env = var.env
   tags = var.tags
