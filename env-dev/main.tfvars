@@ -1,5 +1,5 @@
 env = "dev"
-bastion_cidr = ["172.31.14.99/32"]
+bastion_cidr = ["172.31.89.20/32"]
 dns_domain = "devops71.tech"
 
 vpc = {
