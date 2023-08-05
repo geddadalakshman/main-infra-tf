@@ -11,6 +11,7 @@ module "vpc" {
   private_subnets = each.value["private_subnets"]
 }
 
+/*
 module "docdb" {
   source = "git::https://github.com/geddadalakshman/docdb-module.git"
   env = var.env
@@ -126,4 +127,5 @@ module "apps" {
 output "alb" {
   value = module.elasticache
 }
+*/
 
