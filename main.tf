@@ -129,3 +129,13 @@ output "alb" {
 }
 */
 
+module "eks" {
+  source = "github.com/r-devors/tf-module-eks"
+  ENV = var.env
+  PRIVATE_SUBNETS_IDS = lookup(local.subnet_ids, "app", null )
+  PUBLIC_SUBNETS_IDS = lookup(local.subnet_ids, "public", null)
+  DESIRED_SIZE = 1
+  MAX_SIZE = 1
+  MIN_SIZE = 1
+}
+
